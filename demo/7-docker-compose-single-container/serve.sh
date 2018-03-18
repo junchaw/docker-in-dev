@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Zero downtime deployment won't update nginx configuration, so I force reloading the containe, may not be the best way...
+# Zero downtime deployment won't update nginx configuration, so I force reloading the containe, may not be the best solution...
 
 docker stack deploy -c docker-compose.yml localhost
 
