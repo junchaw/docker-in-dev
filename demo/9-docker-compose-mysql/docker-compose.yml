@@ -1,0 +1,28 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./log:/var/log/nginx
+    depends_on:
+      - php
+  php:
+    image: php:custom
+    volumes:
+      - ./html:/usr/share/nginx/html
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql
+    restart: always
+    #volumes:
+    #  - ./database:/var/lib/mysql
+    ports:
+      - "3366:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
